@@ -7,6 +7,7 @@ I used the Faster RCNN pretrained model to do object detection. I wrote code bas
 
 This requires Tensorflow's Object Detection API to run. It scores 0.36121 public score and 0.33093 private score on kaggle evaluation server. It takes 21 hours to run on a 4 core 15 GB RAM Nvidia Tesla P100 GPU instance. Other implementations on the same hardware take 27 hours.
 
-Run frcnn1.py to run inference on 99999 images in the OID challenge2018 set. You may need to modify lines 19-34 for file paths.
+Download model at http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_resnet_v2_atrous_oid_14_10_2017.tar.gz
+Modify lines 19-34 for file paths. Run frcnn1.py to run inference on 99999 images in the OID challenge2018 set. 
 
 Misc files are just files I used for experiments.
