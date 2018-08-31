@@ -5,7 +5,7 @@ Open Images Challenge is an object detection challenge on a portion of the open 
 
 I used the Faster RCNN pretrained model to do object detection. I wrote code based on the object detection tutorial given with Tensorflow's Object Detection API. The code runs inference on the challenge2018 set. I used google cloud compute instances to process the data because of the huge quantities involved.
 
-This requires Tensorflow's Object Detection API to run. It scores 0.36121 public score and 0.33093 private score on kaggle evaluation server. It takes 21 hours to run on a 4 core 15 GB RAM Nvidia Tesla P100 GPU instance. Other implementations on the same hardware take 27 hours.
+This requires Tensorflow's Object Detection API to run. It scores 0.36121 public score and 0.33093 private score on kaggle evaluation server. This achieves 43rd on kaggle's public and private leaderboards of the open images challenge. It takes 21 hours to run on a 4 core 15 GB RAM Nvidia Tesla P100 GPU instance. Other implementations on the same hardware take 27 hours.
 
 Download model at http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_resnet_v2_atrous_oid_14_10_2017.tar.gz
 Modify lines 19-34 for file paths. Run frcnn1.py to run inference on 99999 images in the OID challenge2018 set. 
