@@ -205,7 +205,7 @@ for k in range(0, len(files), RESET):
 	with open('list_images.txt', 'w') as f:
 		[f.write(os.path.join(os.getcwd(), PATH_TO_TEST_IMAGES_DIR, file)+'\n') for file in files[k:k+RESET]]
 	output_dict = run_inference_for_many_images('list_images.txt', detection_graph)
-	for j in range(RESET):
+	for j in range(len(output_dict)):
 		sc = output_dict[j]['detection_scores']
 		cl = output_dict[j]['detection_classes']
 		bx = output_dict[j]['detection_boxes']
