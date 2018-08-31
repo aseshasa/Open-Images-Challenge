@@ -1,0 +1,17 @@
+#! /bin/bash
+
+nvidia-smi
+lsmod | grep nvidia
+sudo apt-mark hold nvidia-396
+sudo apt-get install linux-headers-$(uname -r)
+gsutil cp gs://detection-aseshasa/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb .
+sudo dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
+sudo apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+sudo apt-get update
+sudo apt-get install -y cuda-9.0
+export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+systemctl status nvidia-persistenced
+sudo systemctl enable nvidia-persistenced
+sudo cp /lib/udev/rules.d/40-vm-hotadd.rules /etc/udev/rules.d
+sudo sed -i '/SUBSYSTEM=="memory", ACTION=="add"/d' /etc/udev/rules.d/40-vm-hotadd.rules
+sudo reboot

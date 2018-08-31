@@ -1,0 +1,24 @@
+#! /bin/bash
+
+sudo apt-get install -y python-pip
+sudo apt-get install -y python-opencv
+sudo apt-get install -y git
+sudo apt-get install -y unzip
+sudo pip install numpy pandas pillow graphviz pydot h5py opencv-python tensorflow-gpu keras Cython pillow lxml jupyter matplotlib contextlib2 numpy
+git clone https://github.com/tensorflow/models
+cd models/research/slim
+pip install .
+cd ~
+git clone https://github.com/cocodataset/cocoapi.git
+cd cocoapi/PythonAPI
+make
+cp -r pycocotools ~/models/research/
+cd ~/models/research/
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+wget -O protobuf.zip https://github.com/google/protobuf/releases/download/v3.0.0/protoc-3.0.0-linux-x86_64.zip
+unzip protobuf.zip
+./bin/protoc object_detection/protos/*.proto --python_out=.
+python object_detection/builders/model_builder_test.py
+cd oid
+wget http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_resnet_v2_atrous_oid_14_10_2017.tar.gz
+tar -zxvf faster_rcnn_inception_resnet_v2_atrous_oid_14_10_2017.tar.gz

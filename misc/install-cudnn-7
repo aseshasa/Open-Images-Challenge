@@ -1,0 +1,14 @@
+#! /bin/bash
+
+sudo apt-mark hold cuda
+gsutil cp gs://detection-aseshasa/libcudnn7_7.1.4.18-1+cuda9.0_amd64.deb .
+gsutil cp gs://detection-aseshasa/libcudnn7-dev_7.1.4.18-1+cuda9.0_amd64.deb .
+gsutil cp gs://detection-aseshasa/libcudnn7-doc_7.1.4.18-1+cuda9.0_amd64.deb .
+sudo dpkg -i libcudnn7_7.1.4.18-1+cuda9.0_amd64.deb
+sudo dpkg -i libcudnn7-dev_7.1.4.18-1+cuda9.0_amd64.deb
+sudo dpkg -i libcudnn7-doc_7.1.4.18-1+cuda9.0_amd64.deb
+cp -r /usr/src/cudnn_samples_v7/ $HOME
+cd  $HOME/cudnn_samples_v7/mnistCUDNN
+make clean && make
+./mnistCUDNN
+cd ~
